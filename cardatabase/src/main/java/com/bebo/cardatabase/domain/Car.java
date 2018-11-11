@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Car {
 	@Id
@@ -19,6 +21,7 @@ public class Car {
 	private int year, price;
 	
 	public Car() {}
+	
 	
 	public Car(String brand, String model, String color, 
 			String registerNumber, int year, int price, Owner owner) {

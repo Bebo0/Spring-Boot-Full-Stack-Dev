@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 
 
 @Entity
@@ -49,9 +52,11 @@ public class Owner {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-    
+	
+
 	// cascade ALL means delete all cars when owner is deleted
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="owner")
+	@JsonIgnore
 	private List<Car> cars;
 	// if using many-to-many relationship, use a Set instead of List
     
