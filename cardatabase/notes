@@ -4,3 +4,13 @@ Generate getters and setters by right clicking->Source->Generate Getters and Set
 
 IN Spring Boot, all the HTTP requests are handled by
 controller classes.
+
+Spring Data REST offers and easy and fast way to implement RESTful
+Web Services with Spring. Need to add dependency. Able to define
+the endpoint (url) of service in the properties file:
+spring.data.rest.basePath=/api
+localhost:8000/api
+
+curl -X "DELETE" http://localhost:8000/api/cars/4
+This will delete the car with id=4. (DELETE GET POST PUT).
+Run from command line.
