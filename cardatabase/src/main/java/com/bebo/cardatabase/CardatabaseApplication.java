@@ -11,6 +11,8 @@ import com.bebo.cardatabase.domain.Car;
 import com.bebo.cardatabase.domain.CarRepository;
 import com.bebo.cardatabase.domain.Owner;
 import com.bebo.cardatabase.domain.OwnerRepository;
+import com.bebo.cardatabase.domain.User;
+import com.bebo.cardatabase.domain.UserRepository;
 
 // this annotation is actually a combination of other annotations 
 // that sets up the application for web dev.
@@ -23,6 +25,9 @@ public class CardatabaseApplication {
 	
 	@Autowired
 	private OwnerRepository orepository;
+	
+	@Autowired
+	private UserRepository urepository;
 	
 	public static void main(String[] args) {
 		// the DevTools dependency restarts the app whenever the file is
@@ -59,6 +64,16 @@ public class CardatabaseApplication {
 			car = new Car("Toyota", "Prius", "Silver",
 		             "KKO-0212", 2018, 39000, owner2);
 			repository.save(car);
+			
+			// test users
+			// username: user password: user
+			urepository.save(new User("user", 
+					"$2a$04$1.YhMIgNX/8TkCKGFUONWO1waedKhQ5KrnB30fl0Q01QKqmzLf.Zi",
+					"USER"));
+			// username admin password: admin
+			urepository.save(new User("admin",
+					"$2a$04$KNLUwOWHVQZVpXyMBNc7JOzbLiBjb9Tk9bP7KNcPI12ICuvzXQQKG",
+					"ADMIN"));
 
 			// to check that the data was saved to the Hibernate db, go to 
 			// localhost:8080/h2-console then type select * from car
