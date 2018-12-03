@@ -25,15 +25,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailServiceImpl userDetailsService;
 	
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService)
-		.passwordEncoder(new BCryptPasswordEncoder());
-	}
+
 	
 	@Override 
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().authorizeRequests().antMatchers(HttpMethod.POST, "/login").permitAll()
+		http.csrf().disable().cors().and().authorizeRequests().antMatchers(HttpMethod.POST, "/login").permitAll()
 		.anyRequest().authenticated().and()
 		// Filter for the api/login requests
 		.addFilterBefore(new LoginFilter("/login", authenticationManager()),
@@ -71,6 +67,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	return source;
 
 	
+	}
+	
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService)
+		.passwordEncoder(new BCryptPasswordEncoder());
 	}
 	
 

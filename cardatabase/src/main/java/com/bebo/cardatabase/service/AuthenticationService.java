@@ -26,7 +26,7 @@ public class AuthenticationService {
 						+ EXPIRATIONTIME))
 				.signWith(SIGNINKEY).compact();
 		res.addHeader("Authorization", PREFIX + " " + JwtToken);
-	res.addHeader("Access-Control-Expose_Headers", "Authorization");
+	res.addHeader("Access-Control-Expose-Headers", "Authorization");
 	}
 
 	// Get token from Authorization header
